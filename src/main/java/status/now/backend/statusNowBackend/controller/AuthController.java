@@ -77,19 +77,12 @@ public class AuthController {
 
     }
 
-    private RoleEntity getRoleBasedOnRequest(String roleName) {
-        // Logic to retrieve Role based on name, you can implement it using RoleRepository
-        RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setName(roleName);
-        return roleEntity; // Ideally, you'd fetch the existing role from the database
-    }
 
     @PostMapping("/login")
     public String login(@RequestBody User user) {
         User foundUser = userRepository.findByUsername(user.getUsername());
         if (foundUser != null && passwordEncoder.matches(user.getPassword(), foundUser.getPassword())) {
-            String token = jwtTokenUtil.generateToken(foundUser.getUsername());
-            return "Bearer " + token; // Return the JWT token
+            return jwtTokenUtil.generateToken(foundUser.getUsername()); // Return the JWT token
         }
         return "Invalid credentials";
     }
