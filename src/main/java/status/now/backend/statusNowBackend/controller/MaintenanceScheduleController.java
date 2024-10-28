@@ -27,7 +27,11 @@ public class MaintenanceScheduleController {
         List<MaintenanceSchedule> schedules = maintenanceScheduleManagementService.getAllSchedules();
         return new ResponseEntity<>(schedules, HttpStatus.OK);
     }
-
+    @GetMapping("/service/{serviceId}")
+    public ResponseEntity<List<MaintenanceSchedule>> getSchedulesByServiceId(@PathVariable Long serviceId) {
+        List<MaintenanceSchedule> schedules = maintenanceScheduleManagementService.getSchedulesByServiceId(serviceId);
+        return new ResponseEntity<>(schedules, HttpStatus.OK);
+    }
     @PostMapping
     public ResponseEntity<MaintenanceSchedule> createSchedule(@RequestBody MaintenanceSchedule schedule) {
         if(schedule.getService()!=null && schedule.getService().getId()!=null){

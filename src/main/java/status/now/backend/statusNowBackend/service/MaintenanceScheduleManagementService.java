@@ -17,6 +17,9 @@ public class MaintenanceScheduleManagementService {
     public List<MaintenanceSchedule> getAllSchedules() {
         return maintenanceScheduleRepository.findAll();
     }
+    public List<MaintenanceSchedule> getSchedulesByServiceId(Long serviceId) {
+        return maintenanceScheduleRepository.findByServiceId(serviceId);
+    }
 
     public MaintenanceSchedule createSchedule(MaintenanceSchedule schedule) {
         schedule.setCreatedAt(LocalDateTime.now());

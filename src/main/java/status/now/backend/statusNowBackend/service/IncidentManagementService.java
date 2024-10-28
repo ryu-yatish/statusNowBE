@@ -17,6 +17,9 @@ public class IncidentManagementService {
     public List<IncidentEntity> getAllIncidents() {
         return incidentRepository.findAll();
     }
+    public List<IncidentEntity> getIncidentsByServiceId(Long serviceId) {
+        return incidentRepository.findByServiceId(serviceId);
+    }
 
     public IncidentEntity createIncident(IncidentEntity incident) {
         incident.setCreatedAt(LocalDateTime.now());

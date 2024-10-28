@@ -12,5 +12,7 @@ import java.util.List;
 @Repository
 public interface MaintenanceScheduleRepository extends JpaRepository<MaintenanceSchedule, Long> {
     int countByService(ServicesEntity service);
+    List<MaintenanceSchedule> findByServiceId(Long serviceId);
+
     List<MaintenanceSchedule> findByServiceAndScheduledTimeBetween(ServicesEntity service, LocalDateTime startTime, LocalDateTime endTime);
 }

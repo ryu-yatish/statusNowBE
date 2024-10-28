@@ -22,6 +22,12 @@ public class IncidentController {
         return new ResponseEntity<>(incidents, HttpStatus.OK);
     }
 
+    @GetMapping("/service/{serviceId}")
+    public ResponseEntity<List<IncidentEntity>> getIncidentsByServiceId(@PathVariable Long serviceId) {
+        List<IncidentEntity> incidents = incidentManagementService.getIncidentsByServiceId(serviceId);
+        return new ResponseEntity<>(incidents, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<IncidentEntity> createIncident(@RequestBody IncidentEntity incident) {
         IncidentEntity createdIncident = incidentManagementService.createIncident(incident);
